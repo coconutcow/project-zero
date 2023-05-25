@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/5.3.45/css/material-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #f8f8f8;
+        }
+        main {
+            flex: 1 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .btn {
+            background-color: #2ecc71;
+        }
+        .btn:hover {
+            background-color: #27ae60;
+        }
+        .error-message {
+            color: red;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1 class="center-align">Patient Form</h1>
+            <form method="post" action="/submit?lang={{ lang }}">
+                <div class="input-field">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">{{ form_text.name }}</label>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="age" name="age" required>
+                    <label for="age">{{ form_text.age }}</label>
+                </div>
+                <div class="input-field">
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>{{ form_text.gender }}</option>
+                        <option value="male">{{ form_text.male }}</option>
+                        <option value="female">{{ form_text.female }}</option>
+                        <option value="other">{{ form_text.other }}</option>
+                    </select>
+                    <label>{{ form_text.gender }}</label>
+                </div>
+                <div class="input-field">
+                    <label>
+                        <input type="checkbox" id="smoker" name="smoker">
+                        <span>{{ form_text.smoker }}</span>
+                    </label>
+                </div>
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light" type="submit">{{ form_text.submit }}</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var selectElements = document.querySelectorAll('select');
+            M.FormSelect.init(selectElements);
+        });
+    </script>
+</body>
+</html>
